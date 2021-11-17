@@ -76,6 +76,7 @@ public class Metjelentes {
         boolean found=false;
         for(Data d:list){
             if(d.getSze().equals("00000")){
+                found=true;
                 System.out.println(d.getTelepules()+" "+d.getIdo());
             }
         }
@@ -96,6 +97,25 @@ public class Metjelentes {
                 telepulesek.add(d.getTelepules());
             }
         }
-        
+        int hDb=0,hSum=0,max=-100,min=100;
+        for(String t:telepulesek){
+            for(Data d:list){
+                if(d.getTelepules().equals(t)){
+                    if(d.getHomerseklet()>max){
+                        max=d.getHomerseklet();
+                    }
+                    if(d.getHomerseklet()<min){
+                        min=d.getHomerseklet();
+                    }
+                }
+                hDb++;
+                hSum+=d.getHomerseklet();
+            }
+            System.out.println(String.format("%s Középhőmérséklete: %d; Hőmérséklet-ingadozás: %d",t,hSum/hDb,max-min));
+            max=-100;
+            min=100;
+            hDb=0;
+            hSum=0;
+        }
     }
 }
