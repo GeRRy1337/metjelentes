@@ -131,7 +131,7 @@ public class Metjelentes {
             if(osszesOra[0]&&osszesOra[1]&&osszesOra[2]&&osszesOra[3])
                 System.out.println(String.format("%s Középhőmérséklete: %d; Hőmérséklet-ingadozás: %d",t,Math.round((double)hSum/(double)hDb),max-min));
             else
-                System.out.println(String.format("%s NA; Hőmérséklet-ingadozás: %d",t,Math.round((double)hSum/(double)hDb),max-min));
+                System.out.println(String.format("%s NA; Hőmérséklet-ingadozás: %d",t,max-min));
             max=-100;
             min=100;
             hDb=0;
