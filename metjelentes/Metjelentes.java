@@ -72,6 +72,16 @@ public class Metjelentes {
     }
     
     private static void negyedikFeladat(){
-        System.out.println("4. feladat");
+        System.out.println("4. feladat"); 
+        boolean found=false;
+        for(Data d:list){
+            if(d.getSze().equals("00000")){
+                System.out.println(d.getTelepules()+" "+d.getIdo());
+            }
+        }
+        
+        if(!found){
+            System.out.println("Nem volt szélcsend a mérések idején.");
+        }
     }
 }
