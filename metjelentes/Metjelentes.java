@@ -97,6 +97,7 @@ public class Metjelentes {
                 telepulesek.add(d.getTelepules());
             }
         }
+        boolean osszesOra[]={false,false,false,false};
         int hDb=0,hSum=0,max=-100,min=100;
         for(String t:telepulesek){
             for(Data d:list){
@@ -107,15 +108,28 @@ public class Metjelentes {
                     if(d.getHomerseklet()<min){
                         min=d.getHomerseklet();
                     }
-                hDb++;
-                hSum+=d.getHomerseklet();
+                    String ora=(d.getIdo().split(":")[0]);
+                    if(ora.equals("01")||ora.equals("07")||ora.equals("13")||ora.equals("19")){
+                        hDb++;
+                        hSum+=d.getHomerseklet();
+                        switch(ora){
+                            case "01":osszesOra[0]=true;break;
+                            case "07":osszesOra[1]=true;break;
+                            case "13":osszesOra[2]=true;break;
+                            case "19":osszesOra[3]=true;break;
+                        }
+                    }
                 }
             }
-            System.out.println(String.format("%s Középhőmérséklete: %d; Hőmérséklet-ingadozás: %d",t,Math.round((double)hSum/(double)hDb),max-min));
+            if(osszesOra[0]&&osszesOra[1]&&osszesOra[2]&&osszesOra[3])
+                System.out.println(String.format("%s Középhőmérséklete: %d; Hőmérséklet-ingadozás: %d",t,Math.round((double)hSum/(double)hDb),max-min));
+            else
+                System.out.println(String.format("%s NA; Hőmérséklet-ingadozás: %d",t,Math.round((double)hSum/(double)hDb),max-min));
             max=-100;
             min=100;
             hDb=0;
             hSum=0;
+            osszesOra[0]=false;osszesOra[1]=false;osszesOra[2]=false;osszesOra[3]=false;
         }
     }
 }
