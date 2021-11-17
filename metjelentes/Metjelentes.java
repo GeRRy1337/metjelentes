@@ -107,9 +107,9 @@ public class Metjelentes {
                     if(d.getHomerseklet()<min){
                         min=d.getHomerseklet();
                     }
-                }
                 hDb++;
                 hSum+=d.getHomerseklet();
+                }
             }
             System.out.println(String.format("%s Középhőmérséklete: %d; Hőmérséklet-ingadozás: %d",t,hSum/hDb,max-min));
             max=-100;
