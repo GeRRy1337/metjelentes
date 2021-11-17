@@ -1,5 +1,7 @@
 package metjelentes;
 
+import java.io.File;
+import java.io.FileWriter;
 import java.util.ArrayList;
 import java.sql.ResultSet;
 import java.util.Scanner;
@@ -7,6 +9,7 @@ import java.util.Scanner;
 public class Metjelentes {
 
     private static ArrayList<Data> list=new ArrayList<>();
+    private static ArrayList<String> telepulesek=new ArrayList<>();
     
     public static void main(String[] args) {
         elsoFeladat();
@@ -91,7 +94,6 @@ public class Metjelentes {
     
     private static void otodikFeladat(){
         System.out.println("5. feladat");
-        ArrayList<String> telepulesek=new ArrayList<>();
         for(Data d:list){
             if(telepulesek.indexOf(d.getTelepules())==-1){
                 telepulesek.add(d.getTelepules());
@@ -131,5 +133,33 @@ public class Metjelentes {
             hSum=0;
             osszesOra[0]=false;osszesOra[1]=false;osszesOra[2]=false;osszesOra[3]=false;
         }
+        
+        hatodikFeladat();
     }
-}
+    
+    private static void hatodikFeladat(){
+        System.out.println("6. feladat");
+        try{
+            File directory = new File("szelerossegek");
+            if (!directory.exists()) {
+                directory.mkdir();
+            }
+            FileWriter fw;
+            for(String t:telepulesek){
+                fw=new FileWriter("szelerossegek/"+t+".txt");
+                fw.write(t);
+                for(Data d:list){
+                    if(d.getTelepules().equals(t)){
+                        fw.write("\n"+d.getIdo()+" ");
+                        for(int i=0;i<Integer.parseInt(d.getSze().substring(3,5));i++){
+                            fw.write("#");
+                        }
+                    }
+                }
+                fw.close();
+            }
+            
+            System.out.println("A fájlok elkészültek.");
+        }catch(Exception e){System.err.println(e.getMessage());}
+    }
+}//class
