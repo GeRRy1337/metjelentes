@@ -6,6 +6,11 @@ import java.util.ArrayList;
 import java.sql.ResultSet;
 import java.util.Scanner;
 
+/**
+ *
+ * @author GeRRy
+ */
+
 public class Metjelentes {
 
     private static ArrayList<Data> list=new ArrayList<>();
