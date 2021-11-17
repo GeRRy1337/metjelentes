@@ -83,5 +83,19 @@ public class Metjelentes {
         if(!found){
             System.out.println("Nem volt szélcsend a mérések idején.");
         }
+        
+        otodikFeladat();
+        
+    }
+    
+    private static void otodikFeladat(){
+        System.out.println("5. feladat");
+        ArrayList<String> telepulesek=new ArrayList<>();
+        for(Data d:list){
+            if(telepulesek.indexOf(d.getTelepules())==-1){
+                telepulesek.add(d.getTelepules());
+            }
+        }
+        
     }
 }
